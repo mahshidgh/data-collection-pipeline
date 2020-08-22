@@ -1,0 +1,21 @@
+First, install pktanon
+
+Next create a profile for the capture you want to do
+
+Usage with two example profiles.
+Can extend anonymization using manual, update xml file:
+http://www.tm.uka.de/software/pktanon/documentation/manual/pdf/PktAnon_Manual.pdf
+
+Reading from File:
+
+tcpdump -i <interface name> -w <pcap name>
+
+Specify <pcap name> in the xml file as Input File
+Specify <output file> in the xml file as Output File
+
+pktanon from_capture.xml
+
+Live Capture
+
+tcpdump -i <interface name> -w - | pktanon live_capture.xml
+
