@@ -15,7 +15,7 @@ Specify <output file> in the xml file as Output File
 
 pktanon from_capture.xml
 
-Live Capture
+Live Capture  *** some assertion failures (might not work correctly)
 
 tcpdump -i <interface name> -w - | pktanon live_capture.xml
 
