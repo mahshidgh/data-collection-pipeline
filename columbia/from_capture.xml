@@ -4,18 +4,18 @@
 	<module name="Settings">
 		
 		  <submodule name="Flow">
-			  <configitem name="Input">INFILE</configitem>
-			  <configitem name="Output">OUTFILE</configitem>
+			  <configitem name="Input">/home/sj/research-projects/data-collection-pipeline/columbia/sample_pcaps/testing.pcap</configitem>
+			  <configitem name="Output">/home/sj/research-projects/data-collection-pipeline/columbia/output_pcaps/testing-anonymized.pcap</configitem>
 		</submodule>
 
 		  <submodule name="Misc">
 			  <configitem name="UseMeasure">0</configitem>
-			  <configitem name="MeasureFile"></configitem>
+			  <configitem name="MeasureFile"/>
 			  <configitem name="CreatePlot">0</configitem>
 			  <configitem name="PrintPackets">0</configitem>
         	  <configitem name="SingleStepping">0</configitem>
-              <configitem name="BlockSizeRead"></configitem>
-              <configitem name="BlockSizeWrite"></configitem>
+              <configitem name="BlockSizeRead"/>
+              <configitem name="BlockSizeWrite"/>
 		</submodule>
 		
 		  <submodule name="Checksumming">
@@ -27,6 +27,7 @@
 
 	<module name="AnonMappings">
 	
+  
   <!--
             ~ Description of the anonmyization configitems ~
             
@@ -120,7 +121,7 @@
 			</submodule>
 			
 			<submodule name="VlanPacket">
-			  	<configitem anon="AnonIdentity" name="VlanPriority" />
+			  	<configitem anon="AnonIdentity" name="VlanPriority"/>
 			  	<configitem anon="AnonIdentity" name="VlanCfi"/>
 			  	<configitem anon="AnonBytewiseHashHmacSha1" key="KEY" name="VlanId"/>
 			  	<configitem anon="AnonIdentity" name="VlanType"/>
@@ -184,5 +185,6 @@
 		</submodule>
 	
 	</module>
+
 
 </triggerconf>
