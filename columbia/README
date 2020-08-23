@@ -1,21 +1,17 @@
-First, install pktanon
+On server 1 make sure tcpdump and scp are installed
 
-Next create a profile for the capture you want to do
+Install pktanon, xmlstarlet-dev, libxerces-c-dev on Server 2
 
-Usage with two example profiles.
-Can extend anonymization using manual, update xml file:
+Deplyoment:
+
+On Server 1, run:
+./capture.sh <base_filename>
+./export.sh <base_filename> 
+
+On Server 2, run:
+./upload.sh
+
+
+Can extend anonymization in example .xml files using manual, update from_capture.xml and live_capture.xml:
 http://www.tm.uka.de/software/pktanon/documentation/manual/pdf/PktAnon_Manual.pdf
-
-Reading from File:
-
-tcpdump -i <interface name> -w <pcap name>
-
-Specify <pcap name> in the xml file as Input File
-Specify <output file> in the xml file as Output File
-
-pktanon from_capture.xml
-
-Live Capture  *** some assertion failures (might not work correctly)
-
-tcpdump -i <interface name> -w - | pktanon live_capture.xml
 
