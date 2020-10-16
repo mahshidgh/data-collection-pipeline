@@ -10,7 +10,17 @@ source constants.sh
 
 # -W * -C values multiplied together should be equal to the amount of data we have dedicated to storage for these pcaps on a single server
 
-tcpdump -i enp0s25 -w $1 -W $MAX_FILES -C $MAX_FILESIZE_STR
+
+IFACE="eno2"
+
+if [ -z $1 ]
+then
+    FILENAME="test.pcapng"
+else
+    FILENAME=$1
+fi
+
+tcpdump -i $IFACE -w $FILENAME -W $MAX_FILES -C $MAX_FILESIZE_STR
 
 
 
