@@ -5,22 +5,18 @@
 - add any additional anonymization options (check PDF listed below)
 
 # Installation 
-Server 1
   - tcpdump
   - scp
-  
-Server 2
   - pktanon
   - xmlstarlet-dev
   - libxerces-c-dev
 
 # Deplyoment:
 
-On Server 1, run
+On Capture Server, run
   - ./capture.sh <base_filename>
   - ./export.sh <base_filename> 
-
-On Server 2, run in the directory where files are exported to in export.sh:
+In the directory where files are exported to in export.sh run:
   - ./upload.sh
 
 Can extend anonymization in example .xml files using manual, update from_capture.xml and live_capture.xml:
