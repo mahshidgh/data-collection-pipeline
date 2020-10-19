@@ -15,11 +15,15 @@ IFACE="eno2"
 
 if [ -z $1 ]
 then
-    FILENAME="test.pcapng"
+    mkdir -p test
+    rm -rf test/*
+    FILENAME="test/test.pcapng"
 else
     FILENAME=$1
 fi
 
+
+# TODO: fix filter to be the right length / protocols
 tcpdump -i $IFACE -w $FILENAME -W $MAX_FILES -C $MAX_FILESIZE_STR
 
 

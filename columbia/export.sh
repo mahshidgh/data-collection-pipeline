@@ -15,13 +15,16 @@ while true; do
 	    if [[ "$(lsof "$f") > /dev/null" ]]
 	    then
 	       echo "SCPing file '$f' to Anonymization Server"
-	       # TODO: scp file to other server
-	       current_time=$(date "+%Y.%m.%d-%H.%M.%S")
+	       current_time=$(date "+%Y-%m-%d-%H%M")
 
 	       filename=$(basename $f)
-	       scp $f sanjay@128.59.65.80:/home/sanjay/test/$filename.$current_time.pcapng
-	
-	       rm -f $f
+#	       uploadname=$filename_$current_time.pcapng
+	       directoryname=$(dirname $f)
+	       mkdir -p $directoryname/uploads
+	       nf=$directoryname/uploads/$filename_$current_time.pcapng
+	       echo "Set $f as ready for upload as: $nf"
+#  SCP   CMD  ## scp $nf sanjay@128.59.65.80:/home/sanjay/test/$uploadname # if using 2 servers #
+	       mv $f $nf
 	    else
 		echo "file '$f' still being written to"
 	    fi
