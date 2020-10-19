@@ -15,8 +15,8 @@ while true; do
 	
 	    # TODO: upload this file [$f-anonymized] to google drive
 
-#	    gupload $f-anonymized -c columbia
-	    echo "Attempting to upload $f-anonymized (NOT ACTUALLY!)"	
+	    echo "Attempting to upload $f-anonymized"	
+	    gupload $f-anonymized -c columbia
 	
 	    rm -f $f
 	    rm -f $f-anonymized

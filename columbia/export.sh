@@ -14,22 +14,20 @@ while true; do
 	then
 	    if [[ "$(lsof "$f") > /dev/null" ]]
 	    then
-	       echo "SCPing file '$f' to Anonymization Server"
 	       current_time=$(date "+%Y-%m-%d-%H%M")
-
-	       filename=$(basename $f)
-#	       uploadname=$filename_$current_time.pcapng
+	       filename=$(basename "$f" | sed 's/\(.*\)\..*/\1/')
+	       echo "Got a basename of $filename"
 	       directoryname=$(dirname $f)
 	       mkdir -p $directoryname/uploads
-	       nf=$directoryname/uploads/$filename_$current_time.pcapng
+	       nf="$directoryname/uploads/"$filename"_"$current_time".pcapng"
 	       echo "Set $f as ready for upload as: $nf"
 #  SCP   CMD  ## scp $nf sanjay@128.59.65.80:/home/sanjay/test/$uploadname # if using 2 servers #
 	       mv $f $nf
 	    else
-		echo "file '$f' still being written to"
+		echo "file '$f' has not been closed yet"
 	    fi
-	       
-		   
+	else
+	    echo "file '$f' still being written to"
 	fi
     done
     sleep 10

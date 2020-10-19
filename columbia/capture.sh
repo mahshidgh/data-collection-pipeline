@@ -17,12 +17,12 @@ if [ -z $1 ]
 then
     mkdir -p test
     rm -rf test/*
-    FILENAME="test/test.pcapng"
+    FILENAME="/tmp/test/test.pcapng"
 else
     FILENAME=$1
 fi
 
-
+echo "Starting packet capture to $FILENAME"
 # TODO: fix filter to be the right length / protocols
 tcpdump -i $IFACE -w $FILENAME -W $MAX_FILES -C $MAX_FILESIZE_STR
 
