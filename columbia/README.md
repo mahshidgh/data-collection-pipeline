@@ -14,10 +14,10 @@
 # Deplyoment:
 
 On Capture Server, run
-  - ./capture.sh <base_filename>
-  - ./export.sh <base_filename> 
-In the directory where files are exported to in export.sh run:
-  - ./upload.sh
+  - ./run-pipeline.sh <experiment_name>
+  
+After Finished, run cleanup script on last file to upload (in /tmp/pcaps/<experiment_name>\_<experiment_time>)
+  - ./cleanup.sh <remaining_pcap>
 
 Can extend anonymization in example .xml files using manual, update from_capture.xml and live_capture.xml:
 http://www.tm.uka.de/software/pktanon/documentation/manual/pdf/PktAnon_Manual.pdf
