@@ -15,6 +15,7 @@
 
 On Capture Server, run
   - ./run-pipeline.sh <experiment_name>
+  
 After Finished, run cleanup script on last file to upload (in /tmp/pcaps/<experiment_name>\_<experiment_time>)
   - ./cleanup.sh <remaining_pcap>
 
