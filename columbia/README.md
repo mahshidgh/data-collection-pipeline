@@ -1,8 +1,7 @@
 # Pending Tasks:
 - tcpdump commands need to updated with proper filter for TCP/UDP/DNS/SSL traffic and approriate lengths for truncation
-- export.sh needs an scp command that transfers file '$f' to the address of Server 2 which is doing the anonymization
-- upload.sh needs a command to upload the anonymized file '$f-anonymized' to the appropriate place using google drive's API
 - add any additional anonymization options (check PDF listed below)
+- reanonymization between runs
 
 # Installation 
   - tcpdump
