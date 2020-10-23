@@ -115,15 +115,15 @@
     -->
         
 		  <submodule name="EthernetPacket">
-			  <configitem anon="AnonBytewiseHashHmacSha1" key="KEY" name="MacSource"/>
-			  <configitem anon="AnonBytewiseHashHmacSha1" key="KEY" name="MacDest"/>
+			  <configitem anon="AnonIdentity" key="KEY" name="MacSource"/>
+			  <configitem anon="AnonIdentity" key="KEY" name="MacDest"/>
 			  <configitem anon="AnonIdentity" name="MacType"/>
 			</submodule>
 			
 			<submodule name="VlanPacket">
 			  	<configitem anon="AnonIdentity" name="VlanPriority"/>
 			  	<configitem anon="AnonIdentity" name="VlanCfi"/>
-			  	<configitem anon="AnonBytewiseHashHmacSha1" key="KEY" name="VlanId"/>
+			  	<configitem anon="AnonIdentity" key="KEY" name="VlanId"/>
 			  	<configitem anon="AnonIdentity" name="VlanType"/>
 			</submodule>
 			
@@ -133,45 +133,45 @@
 				  <configitem anon="AnonIdentity" name="ArpHardwareaddrlen"/>
 				  <configitem anon="AnonIdentity" name="ArpProtoaddrlen"/>
 				  <configitem anon="AnonIdentity" name="ArpOpcode"/>
-				  <configitem anon="AnonBytewiseHashHmacSha1" key="KEY" name="ArpSourcemac"/>
+				  <configitem anon="AnonIdentity" key="KEY" name="ArpSourcemac"/>
 				  <configitem anon="AnonHashHmacSha1" key="KEY" name="ArpSourceip"/>
-				  <configitem anon="AnonBytewiseHashHmacSha1" key="KEY" name="ArpDestmac"/>
-				  <configitem anon="AnonHashHmacSha1" key="KEY" name="ArpDestip"/>	
+				  <configitem anon="AnonIdentity" key="KEY" name="ArpDestmac"/>
+				  <configitem anon="AnonIdentity" key="KEY" name="ArpDestip"/>	
 			</submodule>
   
 		  <submodule name="IpPacket">
-			  <configitem anon="AnonConstOverwrite" anonval="0x00" name="IpTos"/>
+			  <configitem anon="AnonIdentity" anonval="0x00" name="IpTos"/>
 			  <configitem anon="AnonIdentity" name="IpIdent"/>
 			  <configitem anon="AnonIdentity" name="IpFlags"/>
 			  <configitem anon="AnonIdentity" name="IpFragoffset"/>
-			  <configitem anon="AnonWhitenoise" name="IpTtl" strength="7"/>
+			  <configitem anon="AnonIdentity" name="IpTtl" strength="7"/>
 			  <configitem anon="AnonHashHmacSha1" key="KEY" name="IpSourceip"/>
-			  <configitem anon="AnonHashHmacSha1" key="KEY" name="IpDestip"/>
-			  <configitem anon="AnonShorten" name="IpOptions" newlen="0"/>
+			  <configitem anon="AnonIdentity" key="KEY" name="IpDestip"/>
+			  <configitem anon="AnonIdentity" name="IpOptions" newlen="0"/>
 		</submodule>
 		
 			<submodule name="Ipv6Packet">
 				  <configitem anon="AnonIdentity" name="Ipv6Trafficclass"/>
 				  <configitem anon="AnonIdentity" name="Ipv6Flowlabel"/>
-				  <configitem anon="AnonWhitenoise" name="Ipv6Hoplimit" strength="7"/>
+				  <configitem anon="AnonIdentity" name="Ipv6Hoplimit" strength="7"/>
 				  <configitem anon="AnonHashHmacSha1" key="KEY" name="Ipv6Sourceaddr"/>
-				  <configitem anon="AnonHashHmacSha1" key="KEY" name="Ipv6Destaddr"/>
+				  <configitem anon="AnonIdentity" key="KEY" name="Ipv6Destaddr"/>
 			</submodule>
 		
 		  <submodule name="UdpPacket">
-			  <configitem anon="AnonBytewiseHashHmacSha1" key="KEY" name="UdpSourceport"/>
-			  <configitem anon="AnonBytewiseHashHmacSha1" key="KEY" name="UdpDestport"/>
+			  <configitem anon="AnonIdentity" key="KEY" name="UdpSourceport"/>
+			  <configitem anon="AnonIdentity" key="KEY" name="UdpDestport"/>
 		</submodule>
 	
 		 <submodule name="TcpPacket">
-			  <configitem anon="AnonBytewiseHashHmacSha1" key="KEY" name="TcpSourceport"/>
-			  <configitem anon="AnonBytewiseHashHmacSha1" key="KEY" name="TcpDestport"/>
-			  <configitem anon="AnonWhitenoise" name="TcpSeqnum" strength="2"/>
-			  <configitem anon="AnonWhitenoise" name="TcpAcknum" strength="2"/>
+			  <configitem anon="AnonIdentity" key="KEY" name="TcpSourceport"/>
+			  <configitem anon="AnonIdentity" key="KEY" name="TcpDestport"/>
+			  <configitem anon="AnonIdentity" name="TcpSeqnum" strength="2"/>
+			  <configitem anon="AnonIdentity" name="TcpAcknum" strength="2"/>
 			  <configitem anon="AnonIdentity" name="TcpFlags"/>
-			  <configitem anon="AnonWhitenoise" name="TcpWindowsize" strength="4"/>
-			  <configitem anon="AnonConstOverwrite" anonval="0x00" name="TcpUrgentpnt"/>
-			  <configitem anon="AnonShorten" name="TcpOptions" newlen="0"/>
+			  <configitem anon="AnonIdentity" name="TcpWindowsize" strength="4"/>
+			  <configitem anon="AnonIdentity" anonval="0x00" name="TcpUrgentpnt"/>
+			  <configitem anon="AnonIdentity" name="TcpOptions" newlen="0"/>
 		</submodule>
 		
 		  <submodule name="IcmpPacket">
