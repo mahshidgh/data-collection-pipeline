@@ -1,4 +1,4 @@
-#!/bin/bash
+ #!/bin/bash
 
 source constants.sh
 
@@ -9,14 +9,16 @@ trap "kill 0" EXIT
 
 if [ -z $1 ]
 then
-    mkdir -p /tmp/test
+    mkdir -p /tmp/test/ssl
     chmod 1777 /tmp/test
+    chmod 1777 /tmp/test/ssl
     mkdir -p testlogs
     rm -rf /tmp/test/*
     rm -rf testlogs/*
     FILENAME="/tmp/test/test.pcapng"
+    SSL_FILENAME="/tmp/test/ssl/ssl-test.pcapng"
     ./capture.sh $FILENAME &> testlogs/capturelog.txt &
-    ./capture-ssl.sh $FILENAME &> testlogs/ssl-capturelog.txt &
+    ./capture-ssl.sh $SSL_FILENAME &> testlogs/ssl-capturelog.txt &
     ./export.sh $FILENAME &> testlogs/exportlog.txt &
     ./export.sh $FILENAME &> testlogs/ssl-exportlog.txt &
     ./upload.sh /tmp/test &> testlogs/uploadlog.txt &
@@ -31,8 +33,9 @@ else
     #       keep the same time started for the script, even though the script is changing
     PREFIX=""
     
-    mkdir -p /tmp/pcaps/$DIRNAME
+    mkdir -p /tmp/pcaps/$DIRNAME/ssl
     chmod 1777 /tmp/pcaps/$DIRNAME
+    chmod 1777 /tmp/pcaps/$DIRNAME/ssl
     mkdir -p logs
     ./capture.sh /tmp/pcaps/$DIRNAME/$DIRNAME.pcapng &> logs/$DIRNAME-capturelog.txt &
     ./capture-ssl.sh /tmp/pcaps/$DIRNAME/ssl/$DIRNAME-ssl.pcapng &> logs/$DIRNAME-ssl-capturelog.txt &
