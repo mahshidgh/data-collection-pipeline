@@ -4,24 +4,39 @@ source constants.sh
 
 if [ -z $1 ]
 then
-    FILENAME="/tmp/test/test.pcapng"
+    DIRECTORY="/tmp/test"
 else
-    FILENAME=$1
+    DIRECTORY=$1
 fi
 
+curi=1
+for f in $1/*
+do
+    current_time="final$curi"
+    ((curi = curi + 1))
+    filename=$(basename "$f" | sed 's/\(.*\)\..*/\1/')
+    echo "Got a basename of $filename"
+    directoryname=$(dirname $f)
+    mkdir -p $directoryname/uploads
+    nf="$directoryname/uploads/"$filename"_"$current_time".pcapng"
+    mv $f $nf
+done
 
-current_time="final"
-filename=$(basename "$1" | sed 's/\(.*\)\..*/\1/')
-echo "Got a basename of $filename"
-directoryname=$(dirname $1)
-mkdir -p $directoryname/uploads
-nf="$directoryname/uploads/"$filename"_"$current_time".pcapng"
-echo "Set $f as ready for upload as: $nf"
-#  SCP   CMD  ## scp $nf sanjay@128.59.65.80:/home/sanjay/test/$uploadname # if using 2 servers #
-mv $f $nf
-echo "Attempting to anonymize $f"
-./anonymize-offline.sh $nf
-echo "Attempting to upload $f-anonymized"
-gupload $nf-anonymized -c columbia
-rm -f $nf
-rm -f $nf-anonymized
+
+for f in $1/uploads/*
+do
+    # run offline anonymization on this file
+    echo "Attempting to anonymize $f"
+    ./anonymize-offline.sh $f
+
+    # TODO: upload this file [$f-anonymized] to google drive
+
+    echo "Attempting to upload $f-anonymized"	
+    gupload $f-anonymized -c columbia
+
+    rm -f $f
+    rm -f $f-anonymized
+done
+
+
+

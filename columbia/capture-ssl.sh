@@ -15,15 +15,14 @@ IFACE="eno2"
 
 if [ -z $1 ]
 then
-    mkdir -p /tmp/test
-    rm -rf /tmp/test/*
-    FILENAME="/tmp/test/test.pcapng"
+    mkdir -p /tmp/test/ssl
+    SSL_FILENAME="/tmp/test/test.pcapng"
 else
-    FILENAME=$1
+    SSL_FILENAME=$1
 fi
 
-echo "Starting packet capture to $FILENAME"
-tcpdump -i $IFACE -w $FILENAME -W $MAX_FILES -C $MAX_FILESIZE_STR 
+echo "Starting packet capture to $SSL_FILENAME"
+tcpdump -i $IFACE -w $SSL_FILENAME -W $MAX_SSL_FILES -C $MAX_SSL_FILESIZE_STR
 
 
 
