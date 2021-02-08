@@ -6,10 +6,10 @@ while true; do
     for f in $1/uploads/*
     do
         FILESIZE=$(stat -c%s "$f")
-	if [ $FILESIZE -ge $MAX_FILESIZE ]; then
+	if [ $FILESIZE -ge $MAX_DNS_FILESIZE ]; then
 	    # run offline anonymization on this file
 	    echo "Attempting to anonymize $f"
-	    ./anonymize-offline.sh $f
+	    ./scripts/anonymization/anonymize-offline.sh $f
 
 	    # TODO: upload this file [$f-anonymized] to google drive
 

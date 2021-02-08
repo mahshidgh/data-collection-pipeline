@@ -9,7 +9,7 @@ while true; do
 	if [ $FILESIZE -ge $MAX_SSL_FILESIZE ]; then
 	    # run offline anonymization on this file
 	    echo "Attempting to anonymize $f"
-	    ./anonymize-offline.sh $f
+	    ./scripts/anonymization/anonymize-offline.sh $f
 
 	    # TODO: upload this file [$f-anonymized] to google drive
 

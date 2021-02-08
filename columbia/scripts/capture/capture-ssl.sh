@@ -11,8 +11,6 @@ source constants.sh
 # -W * -C values multiplied together should be equal to the amount of data we have dedicated to storage for these pcaps on a single server
 
 
-IFACE="eno2"
-
 if [ -z $1 ]
 then
     mkdir -p /tmp/test/ssl

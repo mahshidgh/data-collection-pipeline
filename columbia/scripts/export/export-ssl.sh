@@ -10,7 +10,7 @@ while true; do
     do
 	FILESIZE=$(stat -c%s "$f")
 	echo "Looking at file $f"
-	if [ $FILESIZE -ge $MAX_FILESIZE ]
+	if [ $FILESIZE -ge $MAX_SSL_FILESIZE ]
 	then
 	    if [[ "$(lsof "$f") > /dev/null" ]]
 	    then

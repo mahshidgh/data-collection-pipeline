@@ -20,7 +20,7 @@ echo "Set $f as ready for upload as: $nf"
 #  SCP   CMD  ## scp $nf sanjay@128.59.65.80:/home/sanjay/test/$uploadname # if using 2 servers #
 mv $f $nf
 echo "Attempting to anonymize $f"
-./anonymize-offline.sh $nf
+../anonymization/anonymize-offline.sh $nf
 echo "Attempting to upload $f-anonymized"
 gupload $nf-anonymized -c columbia
 rm -f $nf

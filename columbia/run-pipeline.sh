@@ -9,20 +9,7 @@ trap "kill 0" EXIT
 
 if [ -z $1 ]
 then
-    mkdir -p /tmp/test/ssl
-    chmod 1777 /tmp/test
-    chmod 1777 /tmp/test/ssl
-    mkdir -p testlogs
-    rm -rf /tmp/test/*
-    rm -rf testlogs/*
-    FILENAME="/tmp/test/test.pcapng"
-    SSL_FILENAME="/tmp/test/ssl/ssl-test.pcapng"
-    ./capture.sh $FILENAME &> testlogs/capturelog.txt &
-    ./capture-ssl.sh $SSL_FILENAME &> testlogs/ssl-capturelog.txt &
-    ./export.sh $FILENAME &> testlogs/exportlog.txt &
-    ./export.sh $FILENAME &> testlogs/ssl-exportlog.txt &
-    ./upload.sh /tmp/test &> testlogs/uploadlog.txt &
-    ./upload-ssl.sh /tmp/test/ssl &> testlogs/ssl-uploadlog.txt
+    echo "Usage: ./run_pipeline <experiment_name>"
 else
     BASENAME=$1
 
@@ -34,15 +21,20 @@ else
     PREFIX=""
     
     mkdir -p /tmp/pcaps/$DIRNAME/ssl
+    mkdir -p /tmp/pcaps/$DIRNAME/dns
     chmod 1777 /tmp/pcaps/$DIRNAME
     chmod 1777 /tmp/pcaps/$DIRNAME/ssl
+    chmod 1777 /tmp/pcaps/$DIRNAME/dns
     mkdir -p logs
-    ./capture.sh /tmp/pcaps/$DIRNAME/$DIRNAME.pcapng &> logs/$DIRNAME-capturelog.txt &
-    ./capture-ssl.sh /tmp/pcaps/$DIRNAME/ssl/$DIRNAME-ssl.pcapng &> logs/$DIRNAME-ssl-capturelog.txt &
-    ./export.sh /tmp/pcaps/$DIRNAME/$DIRNAME.pcapng &> logs/$DIRNAME-exportlog.txt &
-    ./export.sh /tmp/pcaps/$DIRNAME/ssl/$DIRNAME-ssl.pcapng &> logs/$DIRNAME-ssl-exportlog.txt &
-    ./upload.sh /tmp/pcaps/$DIRNAME &> logs/$DIRNAME-uploadlog.txt &
-    ./upload-ssl.sh /tmp/pcaps/$DIRNAME/ssl &> logs/$DIRNAME-ssl-uploadlog.txt &
+    ./scripts/capture/capture.sh /tmp/pcaps/$DIRNAME/$DIRNAME.pcapng &> logs/$DIRNAME-default-capturelog.txt &
+    ./scripts/capture/capture-ssl.sh /tmp/pcaps/$DIRNAME/ssl/$DIRNAME-ssl.pcapng &> logs/$DIRNAME-ssl-capturelog.txt &
+#    ./scripts/capture/capture-dns.sh /tmp/pcaps/$DIRNAME/dns/$DIRNAME-dns.pcapng &> logs/$DIRNAME-dns-capturelog.txt &
+    ./scripts/export/export.sh /tmp/pcaps/$DIRNAME/$DIRNAME.pcapng &> logs/$DIRNAME-default-exportlog.txt &
+    ./scripts/export/export-ssl.sh /tmp/pcaps/$DIRNAME/ssl/$DIRNAME-ssl.pcapng &> logs/$DIRNAME-ssl-exportlog.txt &
+#    ./scripts/export/export-dns.sh /tmp/pcaps/$DIRNAME/dns/$DIRNAME-dns.pcapng &> logs/$DIRNAME-dns-exportlog.txt &
+    ./scripts/upload/upload.sh /tmp/pcaps/$DIRNAME &> logs/$DIRNAME-default-uploadlog.txt &
+    ./scripts/upload/upload-ssl.sh /tmp/pcaps/$DIRNAME/ssl &> logs/$DIRNAME-ssl-uploadlog.txt &
+#    ./scripts/upload/upload-dns.sh /tmp/pcaps/$DIRNAME/dns &> logs/$DIRNAME-dns-uploadlog.txt &
 fi
 
 wait
@@ -50,3 +42,4 @@ wait
 ## AFTER SCRIPT EXITS RUN:
 # ./cleanup.sh /tmp/pcaps/$DIRNAME
 # ./cleanup.sh /tmp/pcaps/$DIRNAME/ssl
+# ./cleanup.sh /tmp/pcaps/$DIRNAME/dns
