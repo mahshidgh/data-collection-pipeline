@@ -11,16 +11,10 @@ source constants.sh
 # -W * -C values multiplied together should be equal to the amount of data we have dedicated to storage for these pcaps on a single server
 
 
+# Get the filename to save the capture to
+FILENAME=$1
 
-if [ -z $1 ]
-then
-    mkdir -p /tmp/test
-    rm -rf /tmp/test/*
-    FILENAME="/tmp/test/test.pcapng"
-else
-    FILENAME=$1
-fi
-
+# Start the packet capture
 echo "Starting packet capture to $FILENAME"
 tcpdump -i $IFACE -w $FILENAME -W $MAX_FILES -C $MAX_FILESIZE_STR 
 
