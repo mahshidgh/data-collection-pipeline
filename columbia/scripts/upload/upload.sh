@@ -9,18 +9,27 @@ while true; do
 	if [ $FILESIZE -ge $MAX_FILESIZE ]; then
 
 	    # TODO: split the file into incoming / outgoing
-	    # TODO: anonymize based on the right xml file
-	    
-	    # run offline anonymization on this file
-	    echo "Attempting to anonymize $f"
-	    ./scripts/anonymization/anonymize-offline.sh $f
+	    ./scripts/anonymization/split_columbia.py $f
 
+	    # run offline anonymization on this file
+	    echo "Attempting to anonymize $f-incoming"
+	    ./scripts/anonymization/anonymize-offline.sh $f-incoming ./pktanon_xml/from_capture_dst_anon.xml
+	    echo "Attempting to anonymize $f-outgoing"
+	    ./scripts/anonymization/anonymize-offline.sh $f-outgoing ./pktanon_xml/from_capture_src_anon.xml
+
+	    # Merge the incoming / outgoing pcaps together based on timestamp
+	    mergecap -w $f-anonymized $f-incoming $f-outgoing $f
+	    
 	    # upload the file to google drive
 	    echo "Attempting to upload $f-anonymized"	
 	    gupload $f-anonymized -c columbia
 
 	    rm -f $f
+	    rm -f $f-incoming
+	    rm -f $f-outgoing
 	    rm -f $f-anonymized
+	    rm -f $f-incoming-anonymized
+	    rm -f $f-outgoing-anonymized
 	fi
     done
     sleep 10
