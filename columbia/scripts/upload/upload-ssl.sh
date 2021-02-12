@@ -25,7 +25,11 @@ while true; do
 	    gupload $f-anonymized -c columbia
 
 	    rm -f $f
+	    rm -f $f-incoming
+	    rm -f $f-outgoing
 	    rm -f $f-anonymized
+	    rm -f $f-incoming-anonymized
+	    rm -f $f-outgoing-anonymized
 	fi
     done
     sleep 10
