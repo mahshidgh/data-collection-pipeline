@@ -11,10 +11,10 @@ if [ -z $1 ]
 then
     echo "Usage: ./run_pipeline <experiment_name>"
 else
-    BASENAME=$1
+    # $BASENAME=$1
 
     current_time=$(date "+%Y-%m-%d-%H%M")
-    DIRNAME=$BASENAME-$current_time
+    DIRNAME=$1 #$BASENAME-$current_time
 
     # TODO: create a random prefix every X hours and restart the scripts for new anonymization
     #       keep the same time started for the script, even though the script is changing
