@@ -115,15 +115,15 @@
     -->
         
 		  <submodule name="EthernetPacket">
-			  <configitem anon="AnonBytewiseHashHmacSha1" key="KEY" name="MacSource"/>
-			  <configitem anon="AnonBytewiseHashHmacSha1" key="KEY" name="MacDest"/>
+			  <configitem anon="AnonBytewiseHashHmacSha1" key="TEMPLATEKEY" name="MacSource"/>
+			  <configitem anon="AnonBytewiseHashHmacSha1" key="TEMPLATEKEY" name="MacDest"/>
 			  <configitem anon="AnonIdentity" name="MacType"/>
 			</submodule>
 			
 			<submodule name="VlanPacket">
 			  	<configitem anon="AnonIdentity" name="VlanPriority"/>
 			  	<configitem anon="AnonIdentity" name="VlanCfi"/>
-			  	<configitem anon="AnonBytewiseHashHmacSha1" key="KEY" name="VlanId"/>
+			  	<configitem anon="AnonBytewiseHashHmacSha1" key="TEMPLATEKEY" name="VlanId"/>
 			  	<configitem anon="AnonIdentity" name="VlanType"/>
 			</submodule>
 			
@@ -133,10 +133,10 @@
 				  <configitem anon="AnonIdentity" name="ArpHardwareaddrlen"/>
 				  <configitem anon="AnonIdentity" name="ArpProtoaddrlen"/>
 				  <configitem anon="AnonIdentity" name="ArpOpcode"/>
-				  <configitem anon="AnonBytewiseHashHmacSha1" key="KEY" name="ArpSourcemac"/>
-				  <configitem anon="AnonHashHmacSha1" key="KEY" name="ArpSourceip"/>
-				  <configitem anon="AnonBytewiseHashHmacSha1" key="KEY" name="ArpDestmac"/>
-				  <configitem anon="AnonHashHmacSha1" key="KEY" name="ArpDestip"/>	
+				  <configitem anon="AnonBytewiseHashHmacSha1" key="TEMPLATEKEY" name="ArpSourcemac"/>
+				  <configitem anon="AnonHashHmacSha1" key="TEMPLATEKEY" name="ArpSourceip"/>
+				  <configitem anon="AnonBytewiseHashHmacSha1" key="TEMPLATEKEY" name="ArpDestmac"/>
+				  <configitem anon="AnonHashHmacSha1" key="TEMPLATEKEY" name="ArpDestip"/>	
 			</submodule>
   
 		  <submodule name="IpPacket">
@@ -145,8 +145,8 @@
 			  <configitem anon="AnonIdentity" name="IpFlags"/>
 			  <configitem anon="AnonIdentity" name="IpFragoffset"/>
 			  <configitem anon="AnonWhitenoise" name="IpTtl" strength="7"/>
-			  <configitem anon="AnonHashHmacSha1" key="KEY" name="IpSourceip"/>
-			  <configitem anon="AnonHashHmacSha1" key="KEY" name="IpDestip"/>
+			  <configitem anon="AnonHashHmacSha1" key="TEMPLATEKEY" name="IpSourceip"/>
+			  <configitem anon="AnonHashHmacSha1" key="TEMPLATEKEY" name="IpDestip"/>
 			  <configitem anon="AnonShorten" name="IpOptions" newlen="0"/>
 		</submodule>
 		
@@ -154,18 +154,18 @@
 				  <configitem anon="AnonIdentity" name="Ipv6Trafficclass"/>
 				  <configitem anon="AnonIdentity" name="Ipv6Flowlabel"/>
 				  <configitem anon="AnonWhitenoise" name="Ipv6Hoplimit" strength="7"/>
-				  <configitem anon="AnonHashHmacSha1" key="KEY" name="Ipv6Sourceaddr"/>
-				  <configitem anon="AnonHashHmacSha1" key="KEY" name="Ipv6Destaddr"/>
+				  <configitem anon="AnonHashHmacSha1" key="TEMPLATEKEY" name="Ipv6Sourceaddr"/>
+				  <configitem anon="AnonHashHmacSha1" key="TEMPLATEKEY" name="Ipv6Destaddr"/>
 			</submodule>
 		
 		  <submodule name="UdpPacket">
-			  <configitem anon="AnonBytewiseHashHmacSha1" key="KEY" name="UdpSourceport"/>
-			  <configitem anon="AnonBytewiseHashHmacSha1" key="KEY" name="UdpDestport"/>
+			  <configitem anon="AnonBytewiseHashHmacSha1" key="TEMPLATEKEY" name="UdpSourceport"/>
+			  <configitem anon="AnonBytewiseHashHmacSha1" key="TEMPLATEKEY" name="UdpDestport"/>
 		</submodule>
 	
 		 <submodule name="TcpPacket">
-			  <configitem anon="AnonBytewiseHashHmacSha1" key="KEY" name="TcpSourceport"/>
-			  <configitem anon="AnonBytewiseHashHmacSha1" key="KEY" name="TcpDestport"/>
+			  <configitem anon="AnonBytewiseHashHmacSha1" key="TEMPLATEKEY" name="TcpSourceport"/>
+			  <configitem anon="AnonBytewiseHashHmacSha1" key="TEMPLATEKEY" name="TcpDestport"/>
 			  <configitem anon="AnonWhitenoise" name="TcpSeqnum" strength="2"/>
 			  <configitem anon="AnonWhitenoise" name="TcpAcknum" strength="2"/>
 			  <configitem anon="AnonIdentity" name="TcpFlags"/>
