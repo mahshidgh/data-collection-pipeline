@@ -44,10 +44,29 @@ else
     ./scripts/export/export-ssl.sh /tmp/pcaps/$DIRNAME/ssl/$DIRNAME-ssl.pcapng &> logs/$DIRNAME-ssl-exportlog.txt &
     #    ./scripts/export/export-dns.sh /tmp/pcaps/$DIRNAME/dns/$DIRNAME-dns.pcapng &> logs/$DIRNAME-dns-exportlog.txt &
 
-    # Start the upload scripts
-    ./scripts/upload/upload.sh /tmp/pcaps/$DIRNAME &> logs/$DIRNAME-default-uploadlog.txt &
-    ./scripts/upload/upload-ssl.sh /tmp/pcaps/$DIRNAME/ssl &> logs/$DIRNAME-ssl-uploadlog.txt &
-    #    ./scripts/upload/upload-dns.sh /tmp/pcaps/$DIRNAME/dns &> logs/$DIRNAME-dns-uploadlog.txt &
+THRESH=3600
+    # Restart this loop every THRESH seconds
+
+    while true; do
+	ANON_KEY=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 24 | head -n 1)
+	# Start the upload scripts
+	./scripts/upload/upload.sh /tmp/pcaps/$DIRNAME $ANON_KEY &> logs/$DIRNAME-default-uploadlog.txt &
+	./scripts/upload/upload-ssl.sh /tmp/pcaps/$DIRNAME/ssl $ANON_KEY &> logs/$DIRNAME-ssl-uploadlog.txt &
+	# ./scripts/upload/upload-dns.sh /tmp/pcaps/$DIRNAME/dns $ANON_KEY &> logs/$DIRNAME-dns-uploadlog.txt &
+
+	sleep $THRESH
+
+
+	ps -aux | grep upload.sh > logs/$DIRNAME-default-killlog.txt
+	ps -aux | grep upload-ssl.sh > logs/$DIRNAME-ssl-killlog.txt
+	ps -aux | grep upload-dns.sh > logs/$DIRNAME-dns-killlog.txt
+    
+	killall upload.sh inotifywait
+	killall upload-ssl.sh inotifywait
+	killall upload-dns.sh inotifywait
+    done
+    
+
 fi
 
 wait
