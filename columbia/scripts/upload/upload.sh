@@ -22,7 +22,7 @@ while true; do
 	    
 	    # upload the file to google drive
 	    echo "Attempting to upload $f-anonymized"	
-	    gupload $f-anonymized -c columbia
+	    sudo /root/.google-drive-upload/bin/gupload $f-anonymized -c columbia
 
 	    rm -f $f
 	    rm -f $f-incoming
