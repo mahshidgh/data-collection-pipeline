@@ -11,18 +11,12 @@ source constants.sh
 # -W * -C values multiplied together should be equal to the amount of data we have dedicated to storage for these pcaps on a single server
 
 
-if [ -z $1 ]
-then
-    mkdir -p /tmp/test/ssl
-    SSL_FILENAME="/tmp/test/ssl/ssl-test.pcapng"
-else
-    SSL_FILENAME=$1
-fi
+# Get the filename
+SSL_FILENAME=$1
 
+# Start the capture for SSL traffic
 # where 0x16 = Handshake (22) at the first byte field of the data
-
 # and 0x01 = Client Hello (1) at the 6th byte field of the data
-
 echo "Starting packet capture to $SSL_FILENAME"
 tcpdump -i $IFACE -s 1500 '(tcp[((tcp[12:1] & 0xf0) >> 2)+5:1] = 0x01) and (tcp[((tcp[12:1] & 0xf0) >> 2):1] = 0x16)' -w $SSL_FILENAME -W $MAX_SSL_FILES -C $MAX_SSL_FILESIZE_STR
 

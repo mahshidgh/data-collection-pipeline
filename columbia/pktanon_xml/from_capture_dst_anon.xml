@@ -4,8 +4,8 @@
 	<module name="Settings">
 		
 		  <submodule name="Flow">
-			  <configitem name="Input">/tmp/sample_captures/sample_default_cap_3_5_0800.pcapng</configitem>
-			  <configitem name="Output">/tmp/sample_captures/sample_default_cap_3_5_0800_payload_removed.pcapng</configitem>
+			  <configitem name="Input">/home/sj/research-projects/data-collection-pipeline/columbia/sample_pcaps/testing.pcap</configitem>
+			  <configitem name="Output">/home/sj/research-projects/data-collection-pipeline/columbia/output_pcaps/testing-anonymized.pcap</configitem>
 		</submodule>
 
 		  <submodule name="Misc">
@@ -27,9 +27,6 @@
 
 	<module name="AnonMappings">
 	
-  
-  
-  
   
   <!--
             ~ Description of the anonmyization configitems ~
@@ -137,7 +134,7 @@
 				  <configitem anon="AnonIdentity" name="ArpProtoaddrlen"/>
 				  <configitem anon="AnonIdentity" name="ArpOpcode"/>
 				  <configitem anon="AnonIdentity" key="TEMPLATEKEY" name="ArpSourcemac"/>
-				  <configitem anon="AnonIdentity" key="TEMPLATEKEY" name="ArpSourceip"/>
+				  <configitem anon="AnonHashHmacSha1" key="TEMPLATEKEY" name="ArpSourceip"/>
 				  <configitem anon="AnonIdentity" key="TEMPLATEKEY" name="ArpDestmac"/>
 				  <configitem anon="AnonIdentity" key="TEMPLATEKEY" name="ArpDestip"/>	
 			</submodule>
@@ -148,8 +145,8 @@
 			  <configitem anon="AnonIdentity" name="IpFlags"/>
 			  <configitem anon="AnonIdentity" name="IpFragoffset"/>
 			  <configitem anon="AnonIdentity" name="IpTtl" strength="7"/>
-			  <configitem anon="AnonIdentity" name="IpSourceip"/>
-			  <configitem anon="AnonIdentity" name="IpDestip"/>
+			  <configitem anon="AnonIdentity" key="TEMPLATEKEY" name="IpSourceip"/>
+			  <configitem anon="AnonHashHmacSha1" key="TEMPLATEKEY" name="IpDestip"/>
 			  <configitem anon="AnonIdentity" name="IpOptions" newlen="0"/>
 		</submodule>
 		
@@ -158,7 +155,7 @@
 				  <configitem anon="AnonIdentity" name="Ipv6Flowlabel"/>
 				  <configitem anon="AnonIdentity" name="Ipv6Hoplimit" strength="7"/>
 				  <configitem anon="AnonIdentity" key="TEMPLATEKEY" name="Ipv6Sourceaddr"/>
-				  <configitem anon="AnonIdentity" key="TEMPLATEKEY" name="Ipv6Destaddr"/>
+				  <configitem anon="AnonHashHmacSha1" key="TEMPLATEKEY" name="Ipv6Destaddr"/>
 			</submodule>
 		
 		  <submodule name="UdpPacket">
@@ -188,9 +185,6 @@
 		</submodule>
 	
 	</module>
-
-
-
 
 
 </triggerconf>
